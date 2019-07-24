@@ -1,6 +1,8 @@
 reGeorgX
 =========
 
+https://github.com/L-codes/Neo-reGeorg
+
 **reGeorgX** 是一个旨在积极重构 [reGeorg](https://github.com/sensepost/reGeorg) 的项目，目的是：
 
 * 提高 tunnel 连接安全性
