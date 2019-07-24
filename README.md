@@ -172,6 +172,8 @@ $ python reGeorgX.py -h
            return ''.join(random.sample('zyxwvutsrqponmlkjihgfedcba',10))
    ```
 
+通过设置Cookie来限制只访问某台负载服务器，解决reGeorg遇到负载的问题，参考：[透过F5获取服务器真实内网IP](http://www.polaris-lab.com/index.php/archives/324/)
+
 - Custom headers.
 
 - Optional buffer size, the transfer speed many times faster.
