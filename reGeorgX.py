@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 __author__  = 'L'
+__author__  = 'PolarisLab'
 __version__ = '1.0.0'
 
 import sys
@@ -294,7 +295,7 @@ class session(Thread):
             if K['X-STATUS'] in rep_headers:
                 status = rep_headers[K["X-STATUS"]]
             else:
-                log.critical('Bad KEY or non-neoreg server')
+                log.critical('Bad KEY or non-reGeorgX server')
                 return False
             if status == V["OK"] and 'set-cookie' in rep_headers:
                 cookie = rep_headers["set-cookie"]
@@ -468,7 +469,7 @@ banner = r"""
                  '$$$  '$$$$
                  $$$$  J$$$$'
                 m$$$$  $$$$,
-                $$$$@  '$$$$_          Neo-reGeorg
+                $$$$@  '$$$$_          reGeorgX
              '1t$$$$' '$$$$<
           '$$$$$$$$$$'  $$$$          version {}
                '@$$$$'  $$$$'
@@ -482,19 +483,19 @@ banner = r"""
            $$                 '$$$
 
 
-    [ Github ] https://github.com/L-codes/neoreg
+    [ Github ] https://github.com/PolarisLab/reGeorgX
 """.format(__version__)
 
 use_examples = r"""
                 [ Basic Use ]
 
-   ./neoreg.py generate -k <you_password>
-   ./neoreg.py -k <you_password> -u <server_url>
+   ./reGeorgX.py generate -k <you_password>
+   ./reGeorgX.py -k <you_password> -u <server_url>
 
                [ Advanced Use ]
 
-   ./neoreg.py generate -k <you_password> --file 404.html
-   ./neoreg.py -k <you_password> -u <server_url> \
+   ./reGeorgX.py generate -k <you_password> --file 404.html
+   ./reGeorgX.py -k <you_password> -u <server_url> \
            --skip --proxy http://127.0.0.1:8080 -vv \
            -H 'Authorization: cm9vdDppcyB0d2VsdmU='
 
@@ -507,14 +508,14 @@ if __name__ == '__main__':
         exit()
     elif len(sys.argv) > 1 and sys.argv[1] == 'generate':
         del sys.argv[1] 
-        parser = argparse.ArgumentParser(description='Generate neoreg webshell')
+        parser = argparse.ArgumentParser(description='Generate reGeorgX webshell')
         parser.add_argument("-k", "--key", metavar="KEY", required=True, help="Specify connection key.")
-        parser.add_argument("-o", "--outdir", metavar="DIR", help="Output directory.", default='neoreg_server')
+        parser.add_argument("-o", "--outdir", metavar="DIR", help="Output directory.", default='reGeorgX_server')
         parser.add_argument("-f", "--file", metavar="FILE", help="Camouflage html page file")
         parser.add_argument("--read-buff", metavar="Bytes", help="Remote read buffer.(default: 513)", type=int, default=513)
         args = parser.parse_args()
     else:
-        parser = argparse.ArgumentParser(description='Socks server for Neoreg HTTP(s) tunneller')
+        parser = argparse.ArgumentParser(description='Socks server for reGeorgX HTTP(s) tunneller')
         parser.add_argument("-u", "--url", metavar="URI", required=True, help="The url containing the tunnel script")
         parser.add_argument("-k", "--key", metavar="KEY", required=True, help="Specify connection key")
         parser.add_argument("-l", "--listen-on", metavar="IP", help="The default listening address.(default: 127.0.0.1)", default="127.0.0.1")
@@ -560,7 +561,7 @@ if __name__ == '__main__':
         rV[value] = name
 
     if 'url' in args:
-        # neoreg connect
+        # reGeorgX connect
         if args.v > 2:
             args.v = 2
         LEVELNAME, LEVELLOG = LEVEL[args.v]
@@ -635,7 +636,7 @@ if __name__ == '__main__':
             if servSock_start:
                 servSock.close()
     else:
-        # neoreg server generate
+        # reGeorgX server generate
         print(banner)
         MAXREADBUFF = args.read_buff - (args.read_buff % 3)
         outdir = args.outdir
@@ -647,7 +648,7 @@ if __name__ == '__main__':
         file_write(keyfile, args.key)
 
         script_dir = os.path.join(ROOT, 'scripts')
-        print("    [+] Create neoreg server files:")
+        print("    [+] Create reGeorgX server files:")
         for filename in os.listdir(script_dir):
             outfile = os.path.join(outdir, filename)
             filename = os.path.join(script_dir, filename)
