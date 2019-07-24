@@ -1,4 +1,4 @@
-Neo-reGeorg
+reGeorgX
 =========
 
 **Neo-reGeorg** 是一个旨在积极重构 [reGeorg](https://github.com/sensepost/reGeorg) 的项目，目的是：
@@ -146,8 +146,39 @@ $ python neoreg.py -h
 
  * 混淆/免杀/压缩 server 端
 
-   
+ * Single session mode ([@imbeee](https://www.imbeee.com/2016/01/06/reGeorgSocksProxy-with-single-session-mode/))
 
+   指定Cookie：
+   
+   ```python
+       def cookiesFilter(self,cookie):
+           newcookies = []
+           if cookie:
+               for x in cookie.split(','):
+                   if ';' in x:
+                       match = re.findall('((.+?)=(.+?));(\sdomain=(.+);)?',x.strip())
+                       if match:
+                           if match[0][4] == self.httpHost or match[0][4] == '':
+                               self.cookieDic[match[0][1]] = match[0][2]
+                   else:
+                       self.cookieDic[x.split('=')[0]] = x.split('=')[1]
+           for k in self.cookieDic.keys():
+               newcookies.append(k + '=' + self.cookieDic[k])
+           return '; '.join(newcookies)
+   
+       def reqRand(self):
+           return ''.join(random.sample('zyxwvutsrqponmlkjihgfedcba',10))
+   ```
+
+- Custom headers.
+
+- Optional buffer size, the transfer speed many times faster.
+
+- Optional url check.
+
+- Proxy headers payloads can be selected between URL parameters and Request headers.
+
+  [https://github.com/gorgiaxx/reGeorg](https://github.com/gorgiaxx/reGeorg)
 
 ## License
 
